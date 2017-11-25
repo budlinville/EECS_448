@@ -1,0 +1,45 @@
+package workspace;
+
+import javax.swing.*;
+import java.awt.Component;
+import java.awt.event.*;
+
+public class DiceRoll {
+	//Create and set up the window.
+    JFrame frame = new JFrame("Dice Roll"); //Window title
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Exit when closed
+
+    //Create instruction label
+    JLabel label = new JLabel("Press button to roll dice.");
+    frame.getContentPane().add(label); //Note that is Pane not Panel
+    
+    private JButton rollButton = new JButton("ROLL DICE");
+    frame.getContentPane().add(rollButton); //Note that is Pane not Panel
+    
+    JLabel label2 = new JLabel("Press button to roll dice.");
+    frame.getContentPane().add(label2); //Note that is Pane not Panel
+    
+    //Display the window.
+    frame.pack();    //Put everything together
+    frame.setVisible(true); //Make it visible
+	
+	//Add the listeners to their respective buttons
+	rollButton.addActionListener( rollButtonAction() );
+			
+	private ActionListener rollButtonAction() {
+		//Create and define an action listener for button1
+        ActionListener action = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	int numRolled = rollDice(6);
+                label2.setText(numRolled + " was rolled.");
+            }
+        };
+        return action;
+    }
+	
+	private static int rollDice(int numSides) {
+		int random = (int )(Math.random() * numSides + 1);
+		return random;
+	}
+}

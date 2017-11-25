@@ -1,0 +1,47 @@
+package workspace;
+
+import javax.swing.*;
+import java.awt.Component;
+import java.awt.event.*;
+
+public class DiceRoll {
+	private JButton rollButton;
+	private JPanel content;
+	private JLabel label1;
+	private JLabel label2;
+	
+	public DiceRoll() {
+		rollButton = new JButton("Roll");
+		label1 = new JLabel("Press the button to roll the dice.");
+		label2 = new JLabel("\n");
+		
+		//Add the listeners to their respective buttons
+		rollButton.addActionListener( rollButtonAction() );
+						
+		content = new JPanel();
+		content.add(label1);
+		content.add(rollButton);
+		content.add(label2);		
+	}
+	
+	public Component getContent() {
+		return(content);
+	}
+	
+	private ActionListener rollButtonAction() {
+		//Create and define an action listener for button1
+        ActionListener action = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	int rand = rollDice(6);
+                label2.setText(rand + " was rolled.");
+            }
+        };
+        return action;
+    }
+	
+	private static int rollDice(int numSides) {
+		int random = (int )(Math.random() * numSides + 1);
+		return random;
+	}
+}

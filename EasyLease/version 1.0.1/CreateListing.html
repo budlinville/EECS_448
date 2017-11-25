@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Post a Listing</title>
+  <style>
+  .TITLE {
+      color: white;
+      text-decoration: none;
+    }
+	
+	.HEADER {
+		position:fixed; 
+		width: 100%; 
+		height:60px; 
+		border-bottom: thick solid black;
+		background-color: black;
+		padding: 0px;
+		margin: 0px;
+	}
+	
+	.HEADER_TAG {
+		font-family: "Times New Roman", Times, serif;
+		background-color: black;
+		color: white;
+		padding: 16px;
+		font-size: 16px;
+		border: none;
+		cursor: pointer;
+	}
+	
+	.SIDE {
+		color: white;
+	}
+	
+	.BODY {
+		background-image: url("condos.jpeg");
+		padding:0px;
+		margin:0px;
+	}
+	
+	.BUTTON{
+		background-color: #f9f9f9;
+		border: none;
+		color: black;
+		padding: 10px 30px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 20px;
+		font-family: "Times New Roman", Times, serif;
+	}
+	.CONTAINER {
+		width: 400px;
+		height: 400px;
+		background-color: #f9f9f9;
+		border: thick solid black;
+		border-radius: 20px;
+		padding: 15px;
+
+		position: relative;
+		overflow: hidden;
+		top:90px;
+		left: 0;
+		right: 0;
+
+		margin: auto;
+	}
+	/*-----------------------------------------------------------------------
+	----- NOTE: following is not enirely written by Engineers Anonymous------
+	-----------------------Inspired by and adapted from:---------------------
+	------------https://www.w3schools.com/howto/howto_js_dropdown.asp -------
+	-----------------------------------------------------------------------*/
+	
+	/* Dropdown Button */
+	.dropbtn {
+		font-family: "Times New Roman", Times, serif;
+		background-color: #35393B;
+		color: white;
+		padding: 16px;
+		font-size: 16px;
+		border: none;
+		cursor: pointer;
+	}
+
+	/* Dropdown button on hover & focus */
+	.dropbtn:hover, .dropbtn:focus {
+		background-color: black;
+	}
+
+	/* The container <div> - needed to position the dropdown content */
+	.dropdown {
+		//position: relative;
+		display: inline-block;
+	}
+
+	/* Dropdown Content (Hidden by Default) */
+	.dropdown-content {
+		display: none;
+		position: absolute;
+		background-color: #f9f9f9;
+		min-width: 160px;
+		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+		z-index: 1;
+	}
+
+	/* Links inside the dropdown */
+	.dropdown-content a {
+		color: black;
+		padding: 12px 16px;
+		text-decoration: none;
+		display: block;
+	}
+
+	/* Change color of dropdown links on hover */
+	.dropdown-content a:hover {background-color: #f1f1f1}
+
+	/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+	.show {display:block;}
+  </style>
+  <script>
+	function checkLogin() {
+      var loggedIn = false;
+      var username = getCookie("user");
+	  
+      if (username != "") {
+        loggedIn = true;
+        document.getElementById("username").innerHTML = username;
+		//document.getElementById("username").style = "TITLE";
+      } else {
+        loggedIn = false;
+      }
+    }
+	
+	function logout() {
+		document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+
+	}
+	
+	// NOTE: not written by Engineers Anonymous
+	// taken from https://www.w3schools.com/js/js_cookies.asp
+	function getCookie(cname) {
+		var name = cname + "=";
+		var decodedCookie = decodeURIComponent(document.cookie);
+		var ca = decodedCookie.split(';');
+		for(var i = 0; i <ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) == ' ') {
+				c = c.substring(1);
+			}
+			if (c.indexOf(name) == 0) {
+				return c.substring(name.length, c.length);
+			}
+		}
+		return "";
+	}
+
+	/*-----------------------------------------------------------------------
+	----- NOTE: following is not enirely written by Engineers Anonymous------
+	-----------------------Inspired by and adapted from:---------------------
+	------------https://www.w3schools.com/howto/howto_js_dropdown.asp -------
+	-----------------------------------------------------------------------*/
+	
+	/* When the user clicks on the button, toggle between hiding and showing the dropdown content */
+	function toggleDropdown() {
+		document.getElementById("myDropdown").classList.toggle("show");
+	}
+
+	// Close the dropdown menu if the user clicks outside of it
+	window.onclick = function(event) {
+	  if (!event.target.matches('.dropbtn')) {
+
+		var dropdowns = document.getElementsByClassName("dropdown-content");
+		var i;
+		for (i = 0; i < dropdowns.length; i++) {
+		  var openDropdown = dropdowns[i];
+		  if (openDropdown.classList.contains('show')) {
+			openDropdown.classList.remove('show');
+		  }
+		}
+	  }
+	}
+  </script>
+</head>
+
+<body onload = "checkLogin()" class = "BODY">
+  <div class = "HEADER">
+	<div style = "position: absolute; left:20px;"><h1><a class = "TITLE" href = "https://people.eecs.ku.edu/~alinvill/EasyLease/">EasyLease</a></h1></div>
+    <div style = "position:absolute; top:0px; right:470px;"><h3><a class = "HEADER_TAG" id = "username" style = "text-decoration: none;" href = "ManageAccount.html">notLoggedIn</a></h3></div>
+    <div style = "position:absolute; top:0px; right:300px;"><h3><a class = "HEADER_TAG" style = "text-decoration: none;" href = "CreateListing.html">Make Listing</a></h3></div>
+    <div style = "position:absolute; top:0px; right:200px;"><h3><a class = "HEADER_TAG" style = "text-decoration: none;" href = "aboutUs.html">About Us</a></h3></div>
+    <div class = "dropdown" style = "position:absolute; top:5px; right:105px;">
+	  <button onclick="toggleDropdown()" class="dropbtn"><b>Account</b></button>
+	  <div id = "myDropdown" class="dropdown-content">
+		<a href = "ManageAccount.html">My Account</a>
+		<a href = "Login.html">Login</a>
+		<a href = "CreateAccount.html">Sign Up</a>
+		<a href = "" onclick = "logout()">Logout</a>
+	  </div>
+	</div>
+  </div>
+
+  <div class = "CONTAINER">
+    <h1> Post a listing! </h1>
+
+    <!-- Form to create account -->
+    <form action="CreateListing.php" method="post">
+        Address: <input type="text" name="address"><br><br>
+        City: <input type="text" name="city"><br><br>
+        State: <input type="text" name="state"><br><br>
+        Zip Code: <input type="text" name="zip_code"><br><br>
+        Number of Bedrooms: <input type="number" name="bedrooms"><br><br>
+        Number of Bathrooms: <input type="number" name="bathrooms"><br><br>
+        Monthly Rent: <input type="text" name="rent"><br><br>
+        <!--Pictures: <br>
+        <input type="file" name="pic1" accept="image/*"><br>
+        <input type="file" name="pic2" accept="image/*"><br>
+        <input type="file" name="pic3" accept="image/*"><br>
+        <input type="file" name="pic4" accept="image/*"><br>
+        <input type="file" name="pic5" accept="image/*"><br><br>
+        Email: <input type="email" name="email"><br><br>
+		-->
+        <div>
+          <input type="submit" value="Create Listing!"/>
+        </div>
+    </form>
+  </div>
+</body>
+</html>
