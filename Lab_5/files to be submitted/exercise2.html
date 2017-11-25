@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>Lab5</title>
+    <style type = "text/css">
+    .grey {
+      background:gray;
+    }
+    </style>
+  </head>
+  <body class = "grey">
+    <h1>EECS 448 - Lab 4</h1>
+  </br>
+  <p>Please enter a 1) First name 2) Last name 3) Username 4) Password 5) Link to a profile picture </p>
+  <form name = "myForm" action ="createUser.php" method="post">
+    <input type = "text" name = "firstName">
+    <input type = "text" name = "lastName">
+    <input type = "text" name = "username">
+    <input type = "password" name = "password">
+    <input type = "text" name = "profPic">
+    <input type = "submit" name = "submit" value = "Submit" onclick = "checkInfo()">
+  </form>
+  </body>
+</html>

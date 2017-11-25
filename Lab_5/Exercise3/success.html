@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>Success</title>
+    <style>
+    .green {
+      color:green;
+    }
+    </style>
+  </head>
+  <body>
+	<?php
+		$mysqli = new mysqli("mysql.eecs.ku.edu", "alinvill", "lacrosse2", "alinvill");
+
+		/* check connection */
+		if ($mysqli->connect_errno) {
+			printf("Connect failed: %s\n", $mysqli->connect_error);
+			exit();
+		}
+
+		//start session to get username from login.html
+		session_start();
+		$username = $_SESSION['username'];
+
+		//Select username and profile picture from database
+		$query = "SELECT image FROM Image WHERE username = '$username'";
+		if ($result = $mysqli->query($query)) {
+			while ($row = $result->fetch_assoc()) {
+				$fetchedProfPic = $row["image"];
+			}
+		}
+	?>
+
+    <h1 class = "green"><?php echo $username; ?></h1>
+    <img src="<?php echo $fetchedProfPic; ?>" alt="DEFAULT" width="200" height="150">
+	<br/>
+    <a href = "http://ku.edu/"> KU's Homepage</a>
+  </body>
+</html>
